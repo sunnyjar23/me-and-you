@@ -3,294 +3,1308 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
-<title>ME & YOU</title>
-<style>
-  *{box-sizing:border-box;-webkit-tap-highlight-color:transparent}
-  html,body{margin:0;width:100%;height:100%;overflow:hidden;background:#07090d;color:#f4f4f1;font-family:Arial,"Noto Sans Thai",sans-serif}
-  body{touch-action:pan-y}
-  #stars{position:fixed;inset:0;overflow:hidden;pointer-events:none}
-  .star{position:absolute;width:2px;height:2px;background:#fff;border-radius:50%;opacity:.45;animation:twinkle 3s infinite ease-in-out}
-  @keyframes twinkle{50%{opacity:.1;transform:scale(.7)}}
-  .shooting{position:absolute;width:90px;height:1px;background:linear-gradient(90deg,transparent,#fff,transparent);opacity:0;transform:rotate(-28deg);animation:shoot 1.8s ease-out forwards}
-  @keyframes shoot{0%{opacity:0;transform:translate(0,0) rotate(-28deg)}15%{opacity:.9}100%{opacity:0;transform:translate(-260px,150px) rotate(-28deg)}}
 
-  #app{height:100%;position:relative}
-  .slide{
-    position:absolute;inset:0;padding:28px 22px calc(34px + env(safe-area-inset-bottom));
-    display:flex;flex-direction:column;justify-content:center;align-items:center;
-    text-align:center;opacity:0;transform:translateX(100%) scale(.985);
-    transition:transform .65s cubic-bezier(.22,.7,.2,1),opacity .5s ease;
-    pointer-events:none;
+<title>ME & YOU ✦</title>
+
+<style>
+* {
+  box-sizing: border-box;
+  -webkit-tap-highlight-color: transparent;
+}
+
+html,
+body {
+  margin: 0;
+  padding: 0;
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+  background: #050608;
+  color: #f5f5f2;
+  font-family:
+    -apple-system,
+    BlinkMacSystemFont,
+    "Noto Sans Thai",
+    Arial,
+    sans-serif;
+}
+
+body {
+  touch-action: pan-y;
+}
+
+/* =========================
+   STAR BACKGROUND
+========================= */
+
+#stars {
+  position: fixed;
+  inset: 0;
+  z-index: 0;
+  pointer-events: none;
+}
+
+.star {
+  position: absolute;
+  width: 2px;
+  height: 2px;
+  border-radius: 50%;
+  background: #fff;
+  opacity: .35;
+  animation: blink 3s infinite ease-in-out;
+}
+
+@keyframes blink {
+  50% {
+    opacity: .08;
   }
-  .slide.active{opacity:1;transform:translateX(0) scale(1);pointer-events:auto}
-  .slide.prev{opacity:0;transform:translateX(-100%) scale(.985)}
-  .cover h1{font-size:clamp(46px,14vw,82px);letter-spacing:.12em;font-weight:500;margin:0 0 18px}
-  .eyebrow{font-size:11px;letter-spacing:.28em;text-transform:uppercase;opacity:.5}
-  .hint{font-size:12px;opacity:.48;margin-top:35px}
-  .line{width:34px;height:1px;background:#777;margin:20px auto;opacity:.7}
-  .date{font-size:11px;letter-spacing:.2em;opacity:.48;margin-bottom:18px}
-  .text{max-width:520px;line-height:1.95;font-size:15px;color:#e8e8e4}
-  .text strong{font-size:20px;font-weight:500;display:inline-block;margin-top:7px}
-  .small{font-size:12px;opacity:.48;letter-spacing:.08em}
-  .polaroid{
-    width:min(78vw,330px);background:#eeeae1;padding:10px 10px 30px;
-    box-shadow:0 16px 45px rgba(0,0,0,.4);transform:rotate(-1.5deg);margin-bottom:24px;
+}
+
+/* =========================
+   MAIN
+========================= */
+
+#app {
+  position: relative;
+  width: 100%;
+  height: 100dvh;
+  overflow: hidden;
+  z-index: 1;
+}
+
+.slide {
+  position: absolute;
+  inset: 0;
+
+  width: 100%;
+  height: 100%;
+
+  padding:
+    calc(25px + env(safe-area-inset-top))
+    20px
+    calc(60px + env(safe-area-inset-bottom));
+
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+
+  text-align: center;
+
+  opacity: 0;
+  visibility: hidden;
+
+  transform: translateX(100%);
+
+  transition:
+    transform .65s cubic-bezier(.22,.7,.2,1),
+    opacity .5s ease,
+    visibility .5s;
+}
+
+.slide.active {
+  opacity: 1;
+  visibility: visible;
+  transform: translateX(0);
+}
+
+.slide.exit-left {
+  opacity: 0;
+  visibility: hidden;
+  transform: translateX(-100%);
+}
+
+/* =========================
+   COVER
+========================= */
+
+.cover h1 {
+  margin: 0;
+
+  font-size:
+    clamp(48px, 15vw, 78px);
+
+  font-weight: 300;
+
+  letter-spacing: .12em;
+}
+
+.eyebrow {
+  font-size: 10px;
+  letter-spacing: .25em;
+  opacity: .45;
+}
+
+.line {
+  width: 35px;
+  height: 1px;
+
+  margin: 20px 0;
+
+  background: #aaa;
+  opacity: .45;
+}
+
+.hint {
+  margin-top: 28px;
+
+  font-size: 10px;
+  letter-spacing: .18em;
+
+  opacity: .4;
+}
+
+/* =========================
+   TEXT
+========================= */
+
+.date {
+  margin-bottom: 16px;
+
+  font-size: 10px;
+
+  letter-spacing: .25em;
+
+  opacity: .45;
+}
+
+.text {
+  width: 100%;
+  max-width: 370px;
+
+  font-size: 14px;
+  line-height: 1.9;
+
+  color: #e8e8e4;
+}
+
+.text strong {
+  display: inline-block;
+
+  font-size: 18px;
+  font-weight: 400;
+
+  line-height: 1.7;
+}
+
+/* =========================
+   POLAROID
+========================= */
+
+.polaroid {
+  width: min(78vw, 310px);
+
+  padding: 9px 9px 25px;
+
+  margin-bottom: 18px;
+
+  background: #eeeae1;
+
+  box-shadow:
+    0 18px 45px rgba(0,0,0,.5);
+
+  transform: rotate(-1.5deg);
+
+  flex-shrink: 0;
+}
+
+.polaroid img {
+  display: block;
+
+  width: 100%;
+
+  aspect-ratio: 4 / 5;
+
+  object-fit: cover;
+
+  background: #ccc;
+}
+
+.caption {
+  margin-top: 10px;
+
+  color: #292929;
+
+  font-size: 8px;
+
+  letter-spacing: .13em;
+}
+
+/* =========================
+   FOUR PHOTOS
+========================= */
+
+.film-grid {
+  width: min(88vw, 360px);
+
+  display: grid;
+
+  grid-template-columns: 1fr 1fr;
+
+  gap: 7px;
+
+  padding: 8px;
+
+  background: #eae6dc;
+
+  box-shadow:
+    0 18px 45px rgba(0,0,0,.45);
+}
+
+.film-grid img {
+  display: block;
+
+  width: 100%;
+  aspect-ratio: 1 / 1;
+
+  object-fit: cover;
+
+  background: #ccc;
+}
+
+/* =========================
+   BUTTON
+========================= */
+
+.choice {
+  margin-top: 22px;
+
+  padding: 13px 24px;
+
+  border: 1px solid #666;
+
+  border-radius: 999px;
+
+  background: transparent;
+
+  color: #fff;
+
+  font-size: 13px;
+
+  cursor: pointer;
+}
+
+.choice:active {
+  transform: scale(.95);
+  background: rgba(255,255,255,.08);
+}
+
+/* =========================
+   MUSIC BUTTON
+========================= */
+
+#music {
+  position: fixed;
+
+  top:
+    calc(14px + env(safe-area-inset-top));
+
+  right: 15px;
+
+  z-index: 20;
+
+  width: 38px;
+  height: 38px;
+
+  border: 1px solid #555;
+
+  border-radius: 50%;
+
+  background: rgba(5,6,8,.8);
+
+  color: #fff;
+
+  font-size: 12px;
+
+  display: none;
+}
+
+/* =========================
+   NAV DOTS
+========================= */
+
+#dots {
+  position: fixed;
+
+  bottom:
+    calc(17px + env(safe-area-inset-bottom));
+
+  left: 50%;
+
+  transform: translateX(-50%);
+
+  z-index: 20;
+
+  display: flex;
+
+  gap: 6px;
+}
+
+.dot {
+  width: 4px;
+  height: 4px;
+
+  border-radius: 10px;
+
+  background: #555;
+
+  transition: .3s;
+}
+
+.dot.active {
+  width: 16px;
+
+  background: #eee;
+}
+
+/* =========================
+   START SCREEN
+========================= */
+
+#startScreen {
+  position: fixed;
+
+  inset: 0;
+
+  z-index: 100;
+
+  display: flex;
+
+  justify-content: center;
+  align-items: center;
+
+  flex-direction: column;
+
+  background: #050608;
+
+  text-align: center;
+
+  transition: opacity .8s ease;
+}
+
+#startScreen.hide {
+  opacity: 0;
+  pointer-events: none;
+}
+
+.startTitle {
+  font-size: 48px;
+
+  font-weight: 300;
+
+  letter-spacing: .12em;
+}
+
+.startButton {
+  margin-top: 30px;
+
+  padding: 13px 26px;
+
+  border: 1px solid #555;
+
+  border-radius: 999px;
+
+  background: transparent;
+
+  color: #fff;
+
+  font-size: 12px;
+
+  letter-spacing: .12em;
+}
+
+/* =========================
+   FINAL
+========================= */
+
+.finalQuestion {
+  margin-top: 20px;
+
+  font-size:
+    clamp(28px, 8vw, 42px);
+
+  font-weight: 300;
+
+  line-height: 1.35;
+}
+
+#finalMessage {
+  display: none;
+
+  margin-top: 28px;
+
+  font-size: 17px;
+
+  line-height: 1.8;
+
+  animation: appear 1.3s ease;
+}
+
+#finalMessage.show {
+  display: block;
+}
+
+@keyframes appear {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
   }
-  .polaroid img{display:block;width:100%;aspect-ratio:4/5;object-fit:cover;background:#d8d5ce}
-  .polaroid .caption{color:#252525;font-size:10px;letter-spacing:.12em;margin-top:12px}
-  .film-grid{
-    width:min(88vw,420px);display:grid;grid-template-columns:1fr 1fr;gap:8px;
-    padding:10px;background:#e9e5dc;box-shadow:0 18px 45px rgba(0,0,0,.38);margin-bottom:20px;
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
   }
-  .film-grid img{width:100%;aspect-ratio:1/1;object-fit:cover;background:#d3d0c9}
-  .nav{position:fixed;bottom:15px;left:50%;transform:translateX(-50%);z-index:20;display:flex;gap:10px;align-items:center}
-  .dot{width:4px;height:4px;border-radius:50%;background:#777;transition:.3s}
-  .dot.active{width:18px;border-radius:3px;background:#eee}
-  #music{
-    position:fixed;right:16px;top:calc(15px + env(safe-area-inset-top));z-index:30;
-    width:38px;height:38px;border:1px solid #555;border-radius:50%;background:#0b0d12;color:#fff;
-    font-size:14px;display:none
+}
+
+/* =========================
+   SHOOTING STARS
+========================= */
+
+.shooting {
+  position: fixed;
+
+  z-index: 50;
+
+  width: 100px;
+  height: 1px;
+
+  background:
+    linear-gradient(
+      90deg,
+      transparent,
+      white,
+      transparent
+    );
+
+  transform: rotate(-30deg);
+
+  animation: shoot 1.4s ease-out forwards;
+
+  pointer-events: none;
+}
+
+@keyframes shoot {
+  from {
+    opacity: 0;
+    transform:
+      translate(0,0)
+      rotate(-30deg);
   }
-  .choice{
-    border:1px solid #777;background:transparent;color:#fff;padding:13px 22px;border-radius:999px;
-    font-size:13px;letter-spacing:.05em;margin-top:24px;cursor:pointer
+
+  15% {
+    opacity: 1;
   }
-  .choice:active{transform:scale(.96)}
-  .final .question{font-size:clamp(27px,8vw,44px);font-weight:400;line-height:1.35;margin:10px 0}
-  .final .choice{border-color:#aaa}
-  .final-message{display:none;margin-top:30px;font-size:18px;line-height:1.8}
-  .final-message.show{display:block;animation:fadeUp 1.4s ease both}
-  @keyframes fadeUp{from{opacity:0;transform:translateY(20px)}to{opacity:1;transform:none}}
-  .footer-note{position:absolute;bottom:35px;font-size:10px;opacity:.3;letter-spacing:.12em}
+
+  to {
+    opacity: 0;
+    transform:
+      translate(-300px,180px)
+      rotate(-30deg);
+  }
+}
 </style>
 </head>
+
 <body>
+
+<!-- =========================
+     MUSIC
+========================= -->
+
+<audio
+  id="audio"
+  src="./halley.mp3"
+  preload="auto"
+  loop>
+</audio>
+
+
+<!-- =========================
+     START
+========================= -->
+
+<div id="startScreen">
+
+  <div class="eyebrow">
+    A LITTLE SOMETHING
+  </div>
+
+  <div class="startTitle">
+    TO YOU
+  </div>
+
+  <div class="line"></div>
+
+  <button
+    class="startButton"
+    id="startButton">
+    OPEN ✦
+  </button>
+
+</div>
+
+
+<!-- =========================
+     STARS
+========================= -->
+
 <div id="stars"></div>
 
-<audio id="musicAudio" src="halley.mp3" loop preload="auto"></audio>
-<button id="music" aria-label="เปิดปิดเพลง">♫</button>
+
+<!-- =========================
+     MUSIC CONTROL
+========================= -->
+
+<button id="music">
+  ♫
+</button>
+
+
+<!-- =========================
+     APP
+========================= -->
 
 <main id="app">
 
-<section class="slide cover active">
-  <div class="eyebrow">a little something</div>
-  <h1>TO YOU</h1>
-  <div class="line"></div>
-  <div class="hint">แตะเพื่อเปิด</div>
-</section>
 
-<section class="slide">
-  <div class="eyebrow">before we get there</div>
-  <div class="text" style="margin-top:22px">
-    <strong>ก่อนที่เราจะไปถึงตรงนั้น</strong><br>
+<!-- 1 -->
+
+<section class="slide active">
+
+  <div class="eyebrow">
+    BEFORE WE GET THERE
+  </div>
+
+  <div
+    class="text"
+    style="margin-top:25px;"
+  >
+
+    <strong>
+      ก่อนที่เราจะไปถึงตรงนั้น
+    </strong>
+
+    <br><br>
+
     ลองย้อนกลับไปดูตรงนี้ด้วยกันก่อนนะ
+
   </div>
+
 </section>
 
+
+<!-- 2 -->
+
 <section class="slide">
-  <div class="date">25.07.69</div>
+
+  <div class="date">
+    25.07.69
+  </div>
+
   <div class="polaroid">
-    <img src="photo1.jpg" alt="ความทรงจำ 25.07.69">
-    <div class="caption">OUR FIRST TRIP</div>
+
+    <img
+      src="./photo1.jpg"
+      alt="25.07.69"
+    >
+
+    <div class="caption">
+      OUR FIRST TRIP
+    </div>
+
   </div>
-  <div class="text">ไปเที่ยวด้วยกันครั้งแรก<br>ตื่นเต้นมาก แอบทำตัวไม่ถูก<br>มีแอบทำให้เคืองนิด ๆ</div>
+
+  <div class="text">
+
+    ไปเที่ยวด้วยกันครั้งแรก<br>
+    ตื่นเต้นมาก แอบทำตัวไม่ถูก<br>
+    มีแอบทำให้เคืองนิด ๆ
+
+  </div>
+
 </section>
 
+
+<!-- 3 -->
+
 <section class="slide">
-  <div class="date">26.07.69</div>
-  <div class="polaroid" style="transform:rotate(1.4deg)">
-    <img src="photo2.jpg" alt="ความทรงจำ 26.07.69">
-    <div class="caption">THE NEXT DAY</div>
+
+  <div class="date">
+    26.07.69
   </div>
+
+  <div class="polaroid">
+
+    <img
+      src="./photo2.jpg"
+      alt="26.07.69"
+    >
+
+    <div class="caption">
+      THE NEXT DAY
+    </div>
+
+  </div>
+
   <div class="text">
+
     วันต่อมาอีเวนต์หลักเลยนะ<br>
     ได้พาเธอไปในที่ที่เธออยากไป<br>
-    ได้สนุกด้วยกัน<br><br>
+    ได้สนุกด้วยกัน
+
+    <br><br>
+
     เธอชอบถามว่าเราจะเบื่อรึเปล่า<br>
     กลัวเราเบื่อก็น่ารักดี<br>
-    แต่เราไม่เบื่อเลย<br><br>
-    <strong>รู้รึเปล่าว่าเธอได้เป็นความสุขของเราเลยนะ</strong>
-  </div>
-</section>
+    แต่เราไม่เบื่อเลย
 
-<section class="slide">
-  <div class="date">29.07.69</div>
-  <div class="polaroid" style="transform:rotate(-2deg)">
-    <img src="photo3.jpg" alt="ความทรงจำ 29.07.69">
-    <div class="caption">HOLIDAY TOGETHER</div>
-  </div>
-  <div class="text">เราตัวติดกันตลอดช่วงวันหยุดเลย<br>รู้สึกจั๊กจี้มาก<br><strong>ชอบมองหน้าเธอจัง</strong></div>
-</section>
-
-<section class="slide">
-  <div class="date">06.08.69</div>
-  <div class="polaroid" style="transform:rotate(1.7deg)">
-    <img src="photo4.jpg" alt="ความทรงจำ 06.08.69">
-    <div class="caption">I KNEW IT</div>
-  </div>
-  <div class="text">
-    ชอบมากกกกกกกกกก<br><br>
-    เราว่าวันนี้เรารู้สึกมั่นใจมาก ๆ แล้วว่าเราชอบเธอ<br>
-    <strong>ชอบจนตอนนี้ถอยออกมาไม่ได้ละ</strong>
-  </div>
-</section>
-
-<section class="slide">
-  <div class="eyebrow">little moments</div>
-  <div class="polaroid" style="transform:rotate(-1deg);margin-top:18px">
-    <img src="photo5.jpg" alt="ความทรงจำ">
-    <div class="caption">ชอบจัง ได้ใช้วันหยุดร่วมกัน</div>
-  </div>
-</section>
-
-<section class="slide">
-  <div class="eyebrow">little moments</div>
-  <div class="polaroid" style="transform:rotate(1.5deg);margin-top:18px">
-    <img src="photo6.jpg" alt="ความทรงจำ">
-    <div class="caption">กินข้าวด้วยกันอร่อยจัง</div>
-  </div>
-</section>
-
-<section class="slide">
-  <div class="eyebrow">little moments</div>
-  <div class="polaroid" style="transform:rotate(-1.8deg);margin-top:18px">
-    <img src="photo7.jpg" alt="ความทรงจำ">
-    <div class="caption">แบะๆๆๆ</div>
-  </div>
-</section>
-
-<section class="slide">
-  <div class="eyebrow">little moments</div>
-  <div class="polaroid" style="transform:rotate(1deg);margin-top:18px">
-    <img src="photo8.jpg" alt="ความทรงจำ">
-    <div class="caption">เห้อออออ — ชอบจัง</div>
-  </div>
-</section>
-
-<section class="slide">
-  <div class="eyebrow">some of my favorite moments</div>
-  <div class="film-grid">
-    <img src="photo1.jpg" alt="">
-    <img src="photo2.jpg" alt="">
-    <img src="photo3.jpg" alt="">
-    <img src="photo4.jpg" alt="">
-  </div>
-  <div class="small">memories I want to keep</div>
-</section>
-
-<section class="slide">
-  <div class="text">
-    ที่ผ่านมาเราก็รู้สึกดีมาก ๆ แล้วนะ<br><br>
-    แล้วเราก็คิดว่า...
     <br><br>
-    <strong>ถ้าเราไปต่อจากตรงนี้ด้วยกัน<br>มันก็คงดีเหมือนกัน</strong>
+
+    <strong>
+      รู้รึเปล่าว่า<br>
+      เธอได้เป็นความสุขของเราเลยนะ
+    </strong>
+
   </div>
+
 </section>
 
-<section class="slide final">
-  <div class="eyebrow">one last thing</div>
-  <div class="question">เราไปต่อกันไหม?</div>
-  <button class="choice" id="yes">ไปต่อกันนะ ✦</button>
-  <div class="final-message" id="finalMessage">
+
+<!-- 4 -->
+
+<section class="slide">
+
+  <div class="date">
+    29.07.69
+  </div>
+
+  <div class="polaroid">
+
+    <img
+      src="./photo3.jpg"
+      alt="29.07.69"
+    >
+
+    <div class="caption">
+      HOLIDAY TOGETHER
+    </div>
+
+  </div>
+
+  <div class="text">
+
+    เราตัวติดกันตลอดช่วงวันหยุดเลย
+
+    <br>
+
+    รู้สึกจั๊กจี้มาก
+
+    <br><br>
+
+    <strong>
+      ชอบมองหน้าเธอจัง
+    </strong>
+
+  </div>
+
+</section>
+
+
+<!-- 5 -->
+
+<section class="slide">
+
+  <div class="date">
+    06.08.69
+  </div>
+
+  <div class="polaroid">
+
+    <img
+      src="./photo4.jpg"
+      alt="06.08.69"
+    >
+
+    <div class="caption">
+      I KNEW IT
+    </div>
+
+  </div>
+
+  <div class="text">
+
+    ชอบมากกกกกกกกกก
+
+    <br><br>
+
+    เราว่าวันนี้เรารู้สึกมั่นใจมาก ๆ
+    ว่าเราชอบเธอ
+
+    <br><br>
+
+    <strong>
+      ชอบจนตอนนี้ถอยออกมาไม่ได้ละ
+    </strong>
+
+  </div>
+
+</section>
+
+
+<!-- 6 -->
+
+<section class="slide">
+
+  <div class="eyebrow">
+    LITTLE MOMENTS
+  </div>
+
+  <div
+    class="polaroid"
+    style="margin-top:20px;"
+  >
+
+    <img
+      src="./photo5.jpg"
+      alt=""
+    >
+
+    <div class="caption">
+      ชอบจัง ได้ใช้วันหยุดร่วมกัน
+    </div>
+
+  </div>
+
+</section>
+
+
+<!-- 7 -->
+
+<section class="slide">
+
+  <div class="eyebrow">
+    LITTLE MOMENTS
+  </div>
+
+  <div
+    class="polaroid"
+    style="margin-top:20px;"
+  >
+
+    <img
+      src="./photo6.jpg"
+      alt=""
+    >
+
+    <div class="caption">
+      กินข้าวด้วยกันอร่อยจัง
+    </div>
+
+  </div>
+
+</section>
+
+
+<!-- 8 -->
+
+<section class="slide">
+
+  <div class="eyebrow">
+    LITTLE MOMENTS
+  </div>
+
+  <div
+    class="polaroid"
+    style="margin-top:20px;"
+  >
+
+    <img
+      src="./photo7.jpg"
+      alt=""
+    >
+
+    <div class="caption">
+      แบะๆๆๆ
+    </div>
+
+  </div>
+
+</section>
+
+
+<!-- 9 -->
+
+<section class="slide">
+
+  <div class="eyebrow">
+    LITTLE MOMENTS
+  </div>
+
+  <div
+    class="polaroid"
+    style="margin-top:20px;"
+  >
+
+    <img
+      src="./photo8.jpg"
+      alt=""
+    >
+
+    <div class="caption">
+      เห้อออออ — ชอบจัง
+    </div>
+
+  </div>
+
+</section>
+
+
+<!-- 10 -->
+
+<section class="slide">
+
+  <div class="eyebrow">
+    SOME MEMORIES
+  </div>
+
+  <div
+    class="film-grid"
+    style="margin-top:20px;"
+  >
+
+    <img src="./photo1.jpg" alt="">
+    <img src="./photo2.jpg" alt="">
+    <img src="./photo3.jpg" alt="">
+    <img src="./photo4.jpg" alt="">
+
+  </div>
+
+  <div
+    class="eyebrow"
+    style="margin-top:18px;"
+  >
+    memories I want to keep
+  </div>
+
+</section>
+
+
+<!-- 11 -->
+
+<section class="slide">
+
+  <div class="text">
+
+    ที่ผ่านมาเราก็รู้สึกดีมาก ๆ แล้วนะ
+
+    <br><br>
+
+    แล้วเราก็คิดว่า...
+
+    <br><br>
+
+    <strong>
+      ถ้าเราไปต่อจากตรงนี้ด้วยกัน<br>
+      มันก็คงดีเหมือนกัน
+    </strong>
+
+  </div>
+
+</section>
+
+
+<!-- 12 -->
+
+<section class="slide">
+
+  <div class="eyebrow">
+    ONE LAST THING
+  </div>
+
+  <div class="finalQuestion">
+    เราไปต่อกันไหม?
+  </div>
+
+  <button
+    class="choice"
+    id="yes">
+    ไปต่อกันนะ ✦
+  </button>
+
+  <div id="finalMessage">
+
     งั้นจากตรงนี้ไป<br>
     เราไปด้วยกันนะ
-    <div class="small" style="margin-top:16px">✦ me & you ✦</div>
+
+    <div
+      class="eyebrow"
+      style="margin-top:15px;"
+    >
+      ✦ ME & YOU ✦
+    </div>
+
   </div>
+
 </section>
+
 
 </main>
 
-<div class="nav" id="nav"></div>
+
+<!-- =========================
+     DOTS
+========================= -->
+
+<div id="dots"></div>
+
 
 <script>
-const slides=[...document.querySelectorAll('.slide')];
-const nav=document.getElementById('nav');
-const audio=document.getElementById('musicAudio');
-const musicBtn=document.getElementById('music');
-let index=0, started=false, startX=0, startY=0;
 
-slides.forEach((_,i)=>{
-  const d=document.createElement('div');
-  d.className='dot'+(i===0?' active':'');
-  nav.appendChild(d);
-});
-const dots=[...document.querySelectorAll('.dot')];
+/* =========================
+   ELEMENTS
+========================= */
 
-function show(n, direction=1){
-  n=Math.max(0,Math.min(slides.length-1,n));
-  if(n===index && slides[index].classList.contains('active')) return;
-  const old=index;
-  index=n;
-  slides.forEach((s,i)=>{
-    s.classList.remove('active','prev');
-    if(i===index) s.classList.add('active');
-    else if(i===old && index>old) s.classList.add('prev');
-  });
-  dots.forEach((d,i)=>d.classList.toggle('active',i===index));
-}
+const slides =
+  Array.from(
+    document.querySelectorAll(".slide")
+  );
 
-async function start(){
-  if(!started){
-    started=true;
-    musicBtn.style.display='block';
-    try{await audio.play()}catch(e){}
+const dotsContainer =
+  document.getElementById("dots");
+
+const audio =
+  document.getElementById("audio");
+
+const startScreen =
+  document.getElementById("startScreen");
+
+const startButton =
+  document.getElementById("startButton");
+
+const musicButton =
+  document.getElementById("music");
+
+const yesButton =
+  document.getElementById("yes");
+
+const finalMessage =
+  document.getElementById("finalMessage");
+
+const stars =
+  document.getElementById("stars");
+
+
+let current = 0;
+
+
+/* =========================
+   DOTS
+========================= */
+
+slides.forEach(
+  (_, index) => {
+
+    const dot =
+      document.createElement("div");
+
+    dot.className =
+      "dot";
+
+    if (index === 0) {
+      dot.classList.add("active");
+    }
+
+    dotsContainer.appendChild(dot);
+
   }
-}
-slides[0].addEventListener('click',()=>{start();show(1)});
-document.getElementById('yes').addEventListener('click',()=>{
-  start();
-  document.getElementById('finalMessage').classList.add('show');
-  for(let i=0;i<35;i++) setTimeout(shootStar,i*55);
-});
+);
 
-musicBtn.addEventListener('click',()=>{
-  if(audio.paused) audio.play(); else audio.pause();
-  musicBtn.textContent=audio.paused?'♫':'Ⅱ';
-});
 
-function shootStar(){
-  const s=document.createElement('div');
-  s.className='shooting';
-  s.style.left=(55+Math.random()*45)+'%';
-  s.style.top=(Math.random()*70)+'%';
-  document.getElementById('stars').appendChild(s);
-  setTimeout(()=>s.remove(),1900);
-}
+const dots =
+  Array.from(
+    document.querySelectorAll(".dot")
+  );
 
-for(let i=0;i<90;i++){
-  const s=document.createElement('div');
-  s.className='star';
-  s.style.left=Math.random()*100+'%';
-  s.style.top=Math.random()*100+'%';
-  s.style.animationDelay=(Math.random()*4)+'s';
-  s.style.opacity=(.15+Math.random()*.55);
-  document.getElementById('stars').appendChild(s);
-}
 
-document.addEventListener('touchstart',e=>{
-  startX=e.changedTouches[0].clientX;
-  startY=e.changedTouches[0].clientY;
-},{passive:true});
+/* =========================
+   START MUSIC
+========================= */
 
-document.addEventListener('touchend',e=>{
-  const dx=e.changedTouches[0].clientX-startX;
-  const dy=e.changedTouches[0].clientY-startY;
-  if(Math.abs(dx)>55 && Math.abs(dx)>Math.abs(dy)*1.15){
-    start();
-    if(dx<0 && index<slides.length-1) show(index+1,1);
-    if(dx>0 && index>0) show(index-1,-1);
+startButton.addEventListener(
+  "click",
+  async () => {
+
+    startScreen.classList.add(
+      "hide"
+    );
+
+    musicButton.style.display =
+      "block";
+
+    try {
+
+      await audio.play();
+
+      musicButton.textContent =
+        "Ⅱ";
+
+    } catch (error) {
+
+      console.log(
+        "Music could not start."
+      );
+
+    }
+
   }
-},{passive:true});
+);
 
-document.addEventListener('keydown',e=>{
-  if(e.key==='ArrowRight') show(index+1,1);
-  if(e.key==='ArrowLeft') show(index-1,-1);
-});
+
+/* =========================
+   MUSIC BUTTON
+========================= */
+
+musicButton.addEventListener(
+  "click",
+  async () => {
+
+    if (audio.paused) {
+
+      await audio.play();
+
+      musicButton.textContent =
+        "Ⅱ";
+
+    } else {
+
+      audio.pause();
+
+      musicButton.textContent =
+        "♫";
+
+    }
+
+  }
+);
+
+
+/* =========================
+   SLIDE
+========================= */
+
+function goTo(index) {
+
+  if (
+    index < 0 ||
+    index >= slides.length ||
+    index === current
+  ) {
+    return;
+  }
+
+  const old =
+    current;
+
+  current =
+    index;
+
+
+  slides.forEach(
+    (slide, i) => {
+
+      slide.classList.remove(
+        "active",
+        "exit-left"
+      );
+
+      if (i === current) {
+
+        slide.classList.add(
+          "active"
+        );
+
+      }
+
+      if (
+        i === old &&
+        current > old
+      ) {
+
+        slide.classList.add(
+          "exit-left"
+        );
+
+      }
+
+    }
+  );
+
+
+  dots.forEach(
+    (dot, i) => {
+
+      dot.classList.toggle(
+        "active",
+        i === current
+      );
+
+    }
+  );
+
+}
+
+
+/* =========================
+   SWIPE
+========================= */
+
+let startX = 0;
+let startY = 0;
+
+document.addEventListener(
+  "touchstart",
+  event => {
+
+    startX =
+      event.touches[0].clientX;
+
+    startY =
+      event.touches[0].clientY;
+
+  },
+  { passive:true }
+);
+
+
+document.addEventListener(
+  "touchend",
+  event => {
+
+    const endX =
+      event.changedTouches[0].clientX;
+
+    const endY =
+      event.changedTouches[0].clientY;
+
+    const dx =
+      endX - startX;
+
+    const dy =
+      endY - startY;
+
+
+    if (
+      Math.abs(dx) > 50 &&
+      Math.abs(dx) >
+      Math.abs(dy)
+    ) {
+
+      if (dx < 0) {
+
+        goTo(current + 1);
+
+      } else {
+
+        goTo(current - 1);
+
+      }
+
+    }
+
+  },
+  { passive:true }
+);
+
+
+/* =========================
+   STARS
+========================= */
+
+for (
+  let i = 0;
+  i < 100;
+  i++
+) {
+
+  const star =
+    document.createElement("div");
+
+  star.className =
+    "star";
+
+  star.style.left =
+    Math.random() * 100 + "%";
+
+  star.style.top =
+    Math.random() * 100 + "%";
+
+  star.style.animationDelay =
+    Math.random() * 4 + "s";
+
+  stars.appendChild(star);
+
+}
+
+
+/* =========================
+   SHOOTING STAR
+========================= */
+
+function shootingStar() {
+
+  const star =
+    document.createElement("div");
+
+  star.className =
+    "shooting";
+
+  star.style.left =
+    60 + Math.random() * 40 + "%";
+
+  star.style.top =
+    Math.random() * 80 + "%";
+
+  document.body.appendChild(star);
+
+  setTimeout(
+    () => {
+      star.remove();
+    },
+    1500
+  );
+
+}
+
+
+/* =========================
+   FINAL
+========================= */
+
+yesButton.addEventListener(
+  "click",
+  () => {
+
+    finalMessage.classList.add(
+      "show"
+    );
+
+    for (
+      let i = 0;
+      i < 50;
+      i++
+    ) {
+
+      setTimeout(
+        shootingStar,
+        i * 50
+      );
+
+    }
+
+  }
+);
+
 </script>
+
 </body>
 </html>
-'''
-
-path = Path("/mnt/data/me-and-you.html")
-path.write_text(html, encoding="utf-8")
-print(f"สร้างไฟล์แล้ว: {path}")
